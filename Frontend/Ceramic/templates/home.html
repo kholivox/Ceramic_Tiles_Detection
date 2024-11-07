@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  body {
+    font-family: "Times New Roman", serif;
+    text-align: center;
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-image: url("https://png.pngtree.com/background/20230527/original/pngtree-cancer-is-being-studied-in-an-exciting-new-way-picture-image_2765702.jpg");
+    margin: 0;
+    height: 100vh; 
+    color: #333;
+  }
+
+  .container {
+    background-color: rgba(255, 255, 255, 0.9);
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin-top: 70px;
+    font-family: "Times New Roman", serif;
+  }
+
+  h1 {
+    color: #FF4500; 
+    text-transform: uppercase;
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #2F4F4F;
+  }
+
+  .image-gallery {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+
+  .image-gallery img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+  }
+
+  .image-gallery img:hover {
+    transform: scale(1.05);
+  }
+
+  a.btn {
+    background-color: #FF4500; 
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 18px;
+  }
+
+  a.btn:hover {
+    background-color: #FF6347;
+    transform: scale(1.05);
+  }
+</style>
+
+<div class="container">
+  <h1>Ceramic Tile Defects</h1>
+  <p>Ceramic tiles are widely used in construction and design. However, defects can occur during production or installation, affecting their appearance and functionality. Below are some common types of ceramic tile defects that our model helps to identify:</p>
+
+  <div class="image-gallery">
+    <img src="https://i.pinimg.com/736x/f8/44/08/f844081e2ee1a9e63ff1d7b6f772b1ef.jpg" alt="Ceramic Tile Defect 1">
+    <img src="https://ae01.alicdn.com/kf/HTB1TeuyRXXXXXaGXXXXq6xXFXXXb.jpg_640x640Q90.jpg_.webp" alt="Ceramic Tile Defect 2">
+    <img src="https://i.pinimg.com/736x/40/f1/be/40f1be29768fc8797ca10b0438f73ccf.jpg" alt="Ceramic Tile Defect 3">
+  </div>
+
+  <a href="{% url 'index' %}" class="btn mt-5">Start Detection</a>
+</div>
+
+{% endblock content %}

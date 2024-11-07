@@ -1,0 +1,168 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  
+  <style>
+    body {
+      font-family: 'Times New Roman', serif;
+      background-image: url("https://media.tapeko.co.uk/wp-content/uploads/20240202034914/u96045pir1.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 1000px; /* Adjust as needed */
+    }
+
+    .image-slider, .form {
+      width: 500px; /* Same width for both */
+      height: 400px; /* Same height for both */
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+      overflow: hidden; /* Hide overflow */
+      position: relative; /* Position for the slider */
+    }
+
+    .image-slider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Cover to maintain aspect ratio */
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .image-slider img.active {
+      opacity: 1; /* Show active image */
+    }
+
+    .form {
+      background-color: rgba(255, 255, 255, 0.85); /* Transparent white background for form */
+      padding: 30px;
+      box-sizing: border-box; /* Include padding in width/height */
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 24px;
+      text-transform: uppercase;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 18px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    p {
+      text-align: center;
+      font-size: 14px;
+      color: #333;
+    }
+
+    a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  <title>Login Page</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="image-slider">
+      <img src="https://img.freepik.com/premium-photo/flower-wall-mural-tree-with-leaves-with-living-room-furniture-interior-design-generated-by-ai_986584-42690.jpg" class="active" alt="Mural 1">
+      <img src="https://www.feathr.com/wp-content/uploads/FE14401-Gold-Chinoiserie-Wallpaper-Mural-hero-image.jpg" alt="Mural 2">
+      <img src="https://static.asianpaints.com/content/dam/asianpaintsbeautifulhomes/202407/dress-up-your-walls-in-a-unique-way-with-wall-murals/title-black-and-white-wall-mural.jpg" alt="Mural 3">
+      <img src="https://everwallpaper.com/cdn/shop/collections/The-Great-Wave-of-Kanagawa-wall-mural.jpg?v=1660276321&width=750" alt="Mural 4">
+      <img src="https://www.decorsafari.com/blog/wp-content/uploads/2023/06/Cartoon-Maze-Abstract-Multicolor-Kids-Room-Wallpaper-Mural.jpg" alt="Mural 5">
+    </div>
+
+    <form class="form" method="post">
+      {% csrf_token %}
+      <h1>Login</h1>
+  
+      <label for="username">Username</label>
+      <input type="text" placeholder="Enter Username" id="username" name="username" required>
+
+      <label for="password">Password</label>
+      <input type="password" placeholder="Enter Password" id="password" name="pass" required>
+
+      <button type="submit">Log In</button>
+      <p>You need an account to continue. <a href="{% url 'signup' %}">Sign up</a></p>
+    </form>
+  </div>
+
+  <script>
+    const images = document.querySelectorAll('.image-slider img');
+    let currentIndex = 0;
+
+    function showImage(index) {
+      images.forEach((img, i) => {
+        img.classList.remove('active');
+        if (i === index) {
+          img.classList.add('active');
+        }
+      });
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+    }
+
+    setInterval(nextImage, 3000); // Automatically change image every 3 seconds
+  </script>
+</body>
+</html>

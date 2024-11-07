@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAGE CLASSIFICATION</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20230720/pngtree-d-rendering-of-minimal-bathroom-ceramic-tile-stand-and-wall-background-image_3710881.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Full screen height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly more opaque */
+            max-width: 500px;
+            margin: 20px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Soft shadow */
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        h2 {
+            color: #2f4f4f;
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase; /* Capitalize text */
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            width: 100%; /* Full width */
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%; /* Full width */
+            text-transform: uppercase; /* Capitalize text */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .results {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .results p {
+            margin: 5px 0;
+            font-size: 14px;
+            text-transform: uppercase; /* Capitalize text */
+        }
+
+        .image-gallery {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .image-gallery img {
+            width: 30%; /* Smaller size */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>UPLOAD IMAGE FOR CLASSIFICATION</h2>
+        <form method="post" action="{% url 'predictImage' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="filePath" accept="image/*" required>
+            <input type="submit" value="Upload">
+        </form>
+
+        {% if filePathName %}
+            <h2>CLASSIFICATION RESULT</h2>
+            <p><strong>PREDICTED IMAGE:</strong> {{ predictedLabel }}</p>
+
+            <div class="results">
+                {% if predictedLabel == 'crack' %}
+                    <p>CRACK: A FRACTURE OR BREAK IN THE SURFACE OF THE MATERIAL.</p>
+                {% elif predictedLabel == 'spots' %}
+                    <p>SPOTS: SMALL, DISCOLORED AREAS ON A SURFACE.</p>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <div class="image-gallery">
+            <img src="https://www.jiomart.com/images/product/original/rvw5pjci1f/jaamso-royals-3d-tiles-white-color-pe-foam-wallpaper-self-adhesive-peel-and-stick-easy-to-paste-waterproof-3d-wall-panel-70cm-x-70cm-appx-5-3sq-feet-qty-3-product-images-orvw5pjci1f-p598926763-4-202302282210.jpg?im=Resize=(420,420)" alt="3D Tiles 1">
+            <img src="https://tiimg.tistatic.com/fp/1/008/170/multicolor-high-glossy-flooring-3d-tiles-for-home-and-hotel-usage-019.jpg" alt="3D Tiles 2">
+            <img src="https://img3.exportersindia.com/product_images/bc-full/2022/12/8328759/3d-wall-tiles-1671166399-6675249.jpeg" alt="3D Tiles 3">
+        </div>
+    </div>
+</body>
+</html>
